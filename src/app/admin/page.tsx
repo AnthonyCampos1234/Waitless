@@ -20,6 +20,11 @@ interface Submission {
   submitted_at: string;
 }
 
+interface FirebaseError {
+  code: string;
+  message: string;
+}
+
 export default function AdminPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -59,16 +64,17 @@ export default function AdminPage() {
           setSubmissions(submissionsData);
           setLoading(false);
         },
-        (error) => {
-          console.error('Detailed error:', error);
+        (err: FirebaseError) => {
+          console.error('Detailed error:', err);
           setError('Failed to load submissions. Please try again later.');
           setLoading(false);
         }
       );
 
       return () => unsubscribe();
-    } catch (error) {
-      console.error('Error setting up listener:', error);
+    } catch (err) {
+      const firebaseError = err as FirebaseError;
+      console.error('Error setting up listener:', firebaseError);
       setError('Failed to initialize. Please try again later.');
       setLoading(false);
     }
