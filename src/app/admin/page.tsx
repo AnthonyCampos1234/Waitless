@@ -9,12 +9,13 @@ import { Button } from '@/components/ui/button';
 import { signOut } from 'firebase/auth';
 import { useAuth } from '@/lib/auth-context';
 import { GlassyBackground } from '@/components/ui/glassy-background';
+import { motion } from "framer-motion";
+import { LogOut, Users, Clock } from 'lucide-react';
 
 interface Submission {
   id: string;
   name: string;
   email: string;
-  university: string;
   role: string;
   submitted_at: string;
 }
@@ -87,14 +88,18 @@ export default function AdminPage() {
       <div className="min-h-screen relative">
         <GlassyBackground />
         <div className="container mx-auto py-20 text-center">
-          <div className="bg-white/80 backdrop-blur-xl border border-sky-100 rounded-2xl p-8 max-w-md mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white/80 backdrop-blur-xl border border-sky-100 rounded-2xl p-8 max-w-md mx-auto"
+          >
             <h1 className="text-2xl font-semibold text-gray-800 mb-4">
               {authLoading ? "Checking authentication..." : "Loading submissions..."}
             </h1>
             <div className="animate-pulse flex justify-center">
               <div className="h-2 w-24 bg-sky-200 rounded"></div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     );
@@ -105,16 +110,20 @@ export default function AdminPage() {
       <div className="min-h-screen relative">
         <GlassyBackground />
         <div className="container mx-auto py-20 text-center">
-          <div className="bg-white/80 backdrop-blur-xl border border-red-100 rounded-2xl p-8 max-w-md mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-white/80 backdrop-blur-xl border border-red-100 rounded-2xl p-8 max-w-md mx-auto"
+          >
             <h1 className="text-2xl font-semibold text-gray-800 mb-4">Error</h1>
             <p className="text-red-500 mb-6">{error}</p>
             <Button 
               onClick={handleLogout}
-              className="bg-sky-500 hover:bg-sky-600 text-white"
+              className="bg-gradient-to-r from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600 text-white"
             >
               Logout and Try Again
             </Button>
-          </div>
+          </motion.div>
         </div>
       </div>
     );
@@ -124,41 +133,71 @@ export default function AdminPage() {
     <main className="min-h-screen relative">
       <GlassyBackground />
       <div className="container mx-auto py-10 px-4">
-        <div className="bg-white/80 backdrop-blur-xl border border-sky-100 rounded-2xl p-8 mb-8">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-semibold text-gray-800">Interest Submissions</h1>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white/80 backdrop-blur-xl border border-sky-100 rounded-2xl p-8 mb-8 shadow-lg"
+        >
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-4">
+              <div className="p-3 bg-sky-50 rounded-xl">
+                <Users className="w-6 h-6 text-sky-500" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-semibold text-gray-800">Interest Submissions</h1>
+                <p className="text-gray-600">Manage your waitlist submissions</p>
+              </div>
+            </div>
             <Button 
               onClick={handleLogout}
-              className="bg-sky-500 hover:bg-sky-600 text-white"
+              className="bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 flex items-center gap-2"
             >
+              <LogOut className="w-4 h-4" />
               Logout
             </Button>
           </div>
-        </div>
+        </motion.div>
 
-        {submissions.length === 0 ? (
-          <div className="bg-white/80 backdrop-blur-xl border border-sky-100 rounded-2xl p-8 text-center">
-            <p className="text-gray-600">No submissions yet.</p>
-          </div>
-        ) : (
-          <div className="grid gap-4">
-            {submissions.map((submission) => (
-              <Card key={submission.id} className="bg-white/80 backdrop-blur-xl border border-sky-100 hover:shadow-lg transition-all">
-                <CardHeader>
-                  <CardTitle className="text-gray-800">{submission.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2 text-gray-600">
-                    <p><span className="font-medium">Email:</span> {submission.email}</p>
-                    <p><span className="font-medium">University:</span> {submission.university}</p>
-                    <p><span className="font-medium">Role:</span> {submission.role}</p>
-                    <p><span className="font-medium">Submitted:</span> {new Date(submission.submitted_at).toLocaleString()}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
+        <div className="grid gap-4">
+          {submissions.length === 0 ? (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white/80 backdrop-blur-xl border border-sky-100 rounded-2xl p-8 text-center"
+            >
+              <p className="text-gray-600">No submissions yet.</p>
+            </motion.div>
+          ) : (
+            submissions.map((submission, index) => (
+              <motion.div
+                key={submission.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="bg-white/80 backdrop-blur-xl border border-sky-100 hover:shadow-lg transition-all group">
+                  <CardHeader className="flex flex-row items-center gap-4">
+                    <div className="p-2 bg-sky-50 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                      <Clock className="w-5 h-5 text-sky-500" />
+                    </div>
+                    <div>
+                      <CardTitle className="text-gray-800">{submission.name}</CardTitle>
+                      <p className="text-sm text-gray-500">
+                        Submitted {new Date(submission.submitted_at).toLocaleString()}
+                      </p>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2 text-gray-600">
+                      <p><span className="font-medium">Email:</span> {submission.email}</p>
+                      <p><span className="font-medium">Role:</span> {submission.role}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))
+          )}
+        </div>
       </div>
     </main>
   );

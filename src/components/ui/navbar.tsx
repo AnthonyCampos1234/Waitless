@@ -37,12 +37,6 @@ export function Navbar() {
                 >
                   Benefits
                 </Link>
-                <Link 
-                  href="#about" 
-                  className="text-gray-600 hover:text-sky-500 transition-colors"
-                >
-                  About
-                </Link>
               </nav>
 
               {/* CTA Button - Right */}
@@ -56,7 +50,7 @@ export function Navbar() {
                     });
                   }}
                 >
-                  Join Waitlist
+                  Get Ready
                 </Button>
               </div>
             </div>

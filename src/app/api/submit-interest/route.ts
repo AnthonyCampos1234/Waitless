@@ -9,7 +9,6 @@ export async function POST(req: Request) {
     const docRef = await addDoc(collection(db, 'interest_submissions'), {
       name: data.name,
       email: data.email,
-      university: data.university,
       role: data.role,
       submitted_at: new Date().toISOString(),
     });

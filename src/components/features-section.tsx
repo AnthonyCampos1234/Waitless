@@ -23,72 +23,73 @@ const itemVariants = {
 export function FeaturesSection() {
   return (
     <motion.section 
-      className="py-32 px-4 relative"
+      className="py-20 sm:py-32 px-4 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={sectionVariants}
     >
-      <div className="max-w-6xl mx-auto">
-        <motion.h2 
-          className="text-4xl md:text-5xl font-bold text-gray-800 text-center mb-16"
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-sky-50/50 to-white/50 pointer-events-none" />
+      <div className="absolute -left-40 -top-40 w-80 h-80 bg-sky-100/50 rounded-full blur-3xl" />
+      <div className="absolute -right-40 -bottom-40 w-80 h-80 bg-blue-100/50 rounded-full blur-3xl" />
+
+      <div className="max-w-6xl mx-auto relative">
+        <motion.div 
+          className="text-center mb-16 md:mb-20"
           variants={itemVariants}
         >
-          How It Works
-        </motion.h2>
-        <div className="grid md:grid-cols-3 gap-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-800 mb-4">
+            How It Works
+          </h2>
+          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
+            Three simple steps to secure your classes
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
           {[
             {
               title: "Connect",
-              description: "Find students who can help secure your desired classes.",
+              description: "Find students with earlier registration times who can help secure your desired classes.",
               Icon: Users,
               gradient: "from-sky-500 to-blue-500",
-              border: "border-sky-100",
             },
             {
               title: "Coordinate",
-              description: "Easily communicate and arrange class registration assistance.",
+              description: "Easily communicate and arrange class registration assistance through our secure platform.",
               Icon: CalendarCheck,
               gradient: "from-blue-500 to-indigo-500",
-              border: "border-blue-100",
             },
             {
               title: "Succeed",
-              description: "Get into the classes you need and help others do the same.",
+              description: "Get into the classes you need while helping fellow students do the same.",
               Icon: Target,
               gradient: "from-indigo-500 to-sky-500",
-              border: "border-indigo-100",
             },
           ].map((feature, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group relative bg-gradient-to-br from-white to-sky-50/50 backdrop-blur-xl border border-white/50 rounded-2xl p-8 text-center transform transition-all duration-500 hover:scale-105"
+              className="group relative bg-white/80 backdrop-blur-xl border border-sky-100/50 rounded-2xl p-6 md:p-8 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:shadow-sky-100/50"
             >
-              {/* Gradient border effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl"
-                style={{
-                  background: `linear-gradient(to bottom right, var(--tw-gradient-stops))`,
-                }}
-              />
-              
-              {/* Icon container with gradient background */}
-              <div className="relative mx-auto w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br border border-white/20 backdrop-blur-xl overflow-hidden group-hover:scale-110 transition-transform duration-500">
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-10`} />
+              {/* Icon container */}
+              <div className="relative mx-auto w-16 h-16 mb-6 rounded-2xl bg-gradient-to-br from-white to-sky-50 border border-sky-100/50 overflow-hidden group-hover:scale-110 transition-transform duration-500">
+                <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
                 <div className="relative h-full flex items-center justify-center">
-                  <feature.Icon className={`w-8 h-8 bg-gradient-to-br ${feature.gradient} bg-clip-text text-transparent stroke-[1.5]`} />
+                  <feature.Icon className={`w-8 h-8 stroke-[1.5] text-sky-500`} />
                 </div>
               </div>
 
-              <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mb-4">
                 {feature.title}
               </h3>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed">
                 {feature.description}
               </p>
 
-              {/* Hover effect overlay */}
-              <div className="absolute inset-0 rounded-2xl bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-20 blur-xl" />
+              {/* Hover gradient border */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-sky-200/50 to-blue-200/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 blur-xl" />
             </motion.div>
           ))}
         </div>
