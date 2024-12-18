@@ -2,6 +2,8 @@
 
 A modern web application built to help students manage class registration, developed with cutting-edge technologies and a focus on user experience.
 
+🌐 **Live Demo**: [join-waitless.netlify.app](https://join-waitless.netlify.app/)
+
 ## Tech Stack
 
 ### Frontend
@@ -27,6 +29,11 @@ A modern web application built to help students manage class registration, devel
 - **ESLint** - For code linting
 - **Prettier** - For code formatting
 - **Turbopack** - For fast development builds
+
+### Deployment
+- **Netlify** - For hosting and continuous deployment
+- **Environment Variables** - For secure configuration management
+- **Firebase Cloud Services** - For backend infrastructure
 
 ## Project Structure
 
@@ -68,13 +75,6 @@ Waitless is a platform that revolutionizes the class registration process by con
 ## About
 
 Waitless was created to solve the common problem of class registration stress at universities. Our platform aims to create a collaborative community where students can help each other achieve their academic goals.
-
-## Contact
-
-For any inquiries, please reach out to us at:
-- Email: support@waitless.com
-- Twitter: [@waitless](https://twitter.com/waitless)
-- Instagram: [@waitless.app](https://instagram.com/waitless.app)
 
 ## Creator
 
