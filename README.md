@@ -1,6 +1,34 @@
 # Waitless
 
-![Waitless Banner](public/banner.png)
+A modern web application built to help students manage class registration, developed with cutting-edge technologies and a focus on user experience.
+
+## Tech Stack
+
+### Frontend
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - For type-safe code
+- **Tailwind CSS** - For styling and responsive design
+- **Shadcn/ui** - For UI components
+- **Framer Motion** - For smooth animations
+- **Lucide Icons** - For beautiful icons
+
+### Backend & Services
+- **Firebase**
+  - Authentication
+  - Firestore Database
+  - Analytics
+- **Next.js API Routes** - For serverless functions
+
+### Form Management
+- **React Hook Form** - For form handling
+- **Zod** - For form validation
+
+### Development Tools
+- **ESLint** - For code linting
+- **Prettier** - For code formatting
+- **Turbopack** - For fast development builds
+
+## Project Structure
 
 ## Overview
 
